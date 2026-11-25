@@ -1,5 +1,12 @@
 include: package:flutter_lints/flutter.yaml
 
+analyzer:
+  errors:
+    # The given files start with a `///` header comment and no `library;`
+    # directive; keep them untouched and silence this one info so that
+    # `flutter analyze` passes in CI.
+    dangling_library_doc_comments: ignore
+
 linter:
   rules:
     - prefer_const_constructors

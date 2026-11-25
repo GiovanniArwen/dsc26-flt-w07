@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.6
+          cache: true
+      - run: flutter --version
+      - run: flutter pub get
+      - name: Check formatting
+        run: dart format --output=none --set-exit-if-changed .
+      - name: Analyze
+        run: flutter analyze
+      - name: Test
+        run: flutter test

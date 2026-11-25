@@ -22,13 +22,22 @@ class ShiftSummaryScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         children: [
           Text('Expected', style: Theme.of(context).textTheme.labelMedium),
-          Text(formatEgp(report.expectedTotal), key: const Key('summary-expected')),
+          Text(
+            formatEgp(report.expectedTotal),
+            key: const Key('summary-expected'),
+          ),
           const SizedBox(height: 12),
           Text('Collected', style: Theme.of(context).textTheme.labelMedium),
-          Text(formatEgp(report.collectedTotal), key: const Key('summary-collected')),
+          Text(
+            formatEgp(report.collectedTotal),
+            key: const Key('summary-collected'),
+          ),
           const SizedBox(height: 12),
           Text('Discrepancy', style: Theme.of(context).textTheme.labelMedium),
-          Text(formatEgp(report.discrepancy), key: const Key('summary-discrepancy')),
+          Text(
+            formatEgp(report.discrepancy),
+            key: const Key('summary-discrepancy'),
+          ),
           if (report.balanced)
             const Padding(
               padding: EdgeInsets.only(top: 12),

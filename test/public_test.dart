@@ -12,10 +12,11 @@ void main() {
   test('example of the style we expect: a balanced shift', () {
     final report = reconcile([
       const CodLine(
-          parcelId: 'P1',
-          status: DeliveryStatus.delivered,
-          expectedPiasters: 45000,
-          collectedPiasters: 45000),
+        parcelId: 'P1',
+        status: DeliveryStatus.delivered,
+        expectedPiasters: 45000,
+        collectedPiasters: 45000,
+      ),
     ]);
     expect(report.balanced, isTrue);
     expect(formatEgp(report.expectedTotal), 'EGP 450.00');
