@@ -40,9 +40,9 @@ Claude Code (Claude Opus 5.5) in the Claude desktop app. It read the template, w
 
 ## 4. One AI-suggested test I deleted or changed, and why
 
-<!-- TODO: write your own example here. -->
+The AI wrote a test in `test/parcel_list_app_test.dart` to check that the last of the 2,000 parcels can be reached by scrolling. It called `tester.scrollUntilVisible(last, 2000)` with the default settings, and it failed with `Bad state: No element`. The list was not broken. 2,000 rows at about 72 px each are roughly 144,000 px tall, and the default of 50 drags of 2,000 px only covers 100,000 px, so the test gave up before reaching the end. I changed it to pass the list's `Scrollable` explicitly, with a smaller step (700 px) and `maxScrolls: 1000`, so it really scrolls to the end. Now it proves that every row is reachable, which is one of the Part B requirements.
 
-A design choice worth noting: the screen tests do **not** compare `summary-discrepancy` against `formatEgp(report.discrepancy)`. If `formatEgp` had a bug, such a test would compute the same wrong value on both sides and still pass. The tests instead build a `ReconciliationReport` by hand and assert hard-coded strings such as `'-EGP 12.00'` and `'EGP 0.05'`.
+I also kept one rule for the screen tests: they never compare `summary-discrepancy` against `formatEgp(report.discrepancy)`. If `formatEgp` had a bug, both sides would be wrong in the same way and the test would still pass. So each test builds a `ReconciliationReport` by hand and checks hard-coded strings such as `'-EGP 12.00'` and `'EGP 0.05'`.
 
 ## 5. Before and after my performance fix
 
